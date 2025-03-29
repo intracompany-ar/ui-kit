@@ -5,7 +5,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "vue-tsc --declaration --emitDeclarationOnly --outDir dist && vite build",
-    "release": "npm version patch && npm run build && npm publish --access public && git push && git push --tags"
+    "release": "npm run set:prod && npm version patch && npm run build && npm publish --access public && git push && git push --tags",
+    "set:dev": "node ./scripts/set-entry.js dev",
+    "set:prod": "node ./scripts/set-entry.js prod"
   },
   "type": "module",
   "main": "dist/index.js",
@@ -16,19 +18,21 @@
   ],
   "exports": {
     ".": {
-      "import": "./dist/index.js"
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
     }
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "vue": "^3.5.13"
-  },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.2.3",
     "typescript": "^5.8.2",
     "vite": "^6.2.3",
     "vue-tsc": "^2.2.8"
+  },
+  "peerDependencies": {
+    "vuetify": "^3.0",
+    "vue": "^3.0"
   }
 }
