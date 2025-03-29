@@ -4,7 +4,8 @@
   "description": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "vue-tsc --noEmit && vite build"
+    "build": "vue-tsc --declaration --emitDeclarationOnly --outDir dist && vite build",
+    "release": "npm version patch && npm run build && npm publish --access public && git push && git push --tags"
   },
   "type": "module",
   "main": "dist/index.js",
